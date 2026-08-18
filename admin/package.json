@@ -34,17 +34,10 @@
     "asar": true,
     "npmRebuild": false,
     "win": {
-      "target": [
-        {
-          "target": "msi",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
-      "artifactName": "ImageBoard-Admin-${version}-x64.${ext}",
+      "target": "msi",
       "icon": "build/icon.ico",
-      "publisherName": "Al-Mustafa"
+      "publisherName": "Al-Mustafa",
+      "artifactName": "ImageBoard-Admin-${version}-x64.${ext}"
     },
     "msi": {
       "perMachine": true,
@@ -53,8 +46,7 @@
       "runAfterFinish": true,
       "warningsAsErrors": false,
       "upgradeCode": "A7C2B9D4-8A34-4F21-9E6A-5B0A4D6F1C22"
-    },
-    "buildResources": "build"
+    }
   },
   "author": "Al-Mustafa"
 }
