@@ -123,6 +123,19 @@ for (const eventName of ["dragleave", "drop"]) {
 
 drop.ondrop = (event) => send(event.dataTransfer.files?.[0]);
 
+// اسمح بالإفلات في أي مكان داخل نافذة الأدمن، وليس فقط داخل الصندوق.
+document.addEventListener("dragover", (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener("drop", (event) => {
+  event.preventDefault();
+  if (event.target === drop || drop.contains(event.target)) {
+    return;
+  }
+  send(event.dataTransfer?.files?.[0]);
+});
+
 window.imageBoard.onStatus(setStatus);
 
 window.imageBoard
