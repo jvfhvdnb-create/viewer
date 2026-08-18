@@ -1,0 +1,1 @@
+const{contextBridge,ipcRenderer}=require("electron");contextBridge.exposeInMainWorld("imageBoard",{sendImage:(buffer,name,mime)=>ipcRenderer.invoke("image:send",{buffer,name,mime}),getAddress:()=>ipcRenderer.invoke("network:address"),onStatus:cb=>ipcRenderer.on("viewer:status",(_,v)=>cb(v))});
