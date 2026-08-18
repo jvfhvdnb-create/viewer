@@ -46,6 +46,10 @@ function createWindow() {
     },
   });
 
+  win.webContents.on("did-fail-load", (_event, code, description, url) => {
+    console.error("Viewer renderer failed to load:", code, description, url);
+  });
+
   if (!app.isPackaged) {
     win.loadURL("http://127.0.0.1:5174");
   } else {
