@@ -1,0 +1,1 @@
+const{contextBridge,ipcRenderer}=require("electron");contextBridge.exposeInMainWorld("viewer",{onImage:cb=>ipcRenderer.on("viewer:image",(_,d)=>cb(d)),onConnection:cb=>ipcRenderer.on("viewer:connection",(_,v)=>cb(v))});
