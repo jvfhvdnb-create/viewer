@@ -1,1 +1,9 @@
-const{contextBridge,ipcRenderer}=require("electron");contextBridge.exposeInMainWorld("imageBoard",{sendImage:(buffer,name,mime)=>ipcRenderer.invoke("image:send",{buffer,name,mime}),getAddress:()=>ipcRenderer.invoke("network:address"),onStatus:cb=>ipcRenderer.on("viewer:status",(_,v)=>cb(v))});
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("imageBoard", {
+  sendImage: (buffer, name, mime) =>
+    ipcRenderer.invoke("image:send", { buffer, name, mime }),
+  getNetworkInfo: () => ipcRenderer.invoke("network:info"),
+  onStatus: (callback) =>
+    ipcRenderer.on("viewer:status", (_event, value) => callback(value)),
+});
