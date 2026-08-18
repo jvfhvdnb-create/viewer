@@ -1,0 +1,1 @@
+html,body,#screen{margin:0;width:100%;height:100%;overflow:hidden;background:#000}body{user-select:none}#screen{display:flex;align-items:center;justify-content:center}#image{display:none;width:100%;height:100%;object-fit:contain;-webkit-user-drag:none}#waiting{position:fixed;z-index:2;color:#8996ab;font:20px "Segoe UI",Tahoma,Arial}
