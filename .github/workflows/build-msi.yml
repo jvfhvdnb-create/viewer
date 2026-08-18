@@ -1,32 +1,52 @@
 name: Build Windows MSI
+
 on:
   workflow_dispatch:
   push:
-    tags: ["v*"]
+    tags:
+      - "v*"
+
 permissions:
   contents: read
+
 jobs:
   build:
+    name: Build ${{ matrix.app }} MSI
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
-        app: [admin, viewer]
+        app:
+          - admin
+          - viewer
+
     defaults:
       run:
         working-directory: ${{ matrix.app }}
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v7
         with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: ${{ matrix.app }}/package-lock.json
-      - name: Install
+          node-version: 24
+          package-manager-cache: false
+
+      - name: Show versions
+        run: |
+          node --version
+          npm --version
+
+      - name: Install dependencies
         run: npm install --no-audit --no-fund
+
       - name: Build MSI
         run: npm run dist:msi
-      - uses: actions/upload-artifact@v4
+
+      - name: Upload MSI
+        uses: actions/upload-artifact@v4
         with:
           name: ImageBoard-${{ matrix.app == 'admin' && 'Admin' || 'Viewer' }}-MSI
           path: ${{ matrix.app }}/release/*.msi
