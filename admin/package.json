@@ -1,6 +1,6 @@
 {
   "name": "imageboard-admin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "ImageBoard LAN Admin",
   "main": "electron/main.cjs",
   "scripts": {
