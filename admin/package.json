@@ -24,7 +24,8 @@
     "appId": "com.almustafa.imageboard.admin",
     "productName": "ImageBoard Admin",
     "directories": {
-      "output": "release"
+      "output": "release",
+      "buildResources": "build"
     },
     "files": [
       "dist/**/*",
@@ -35,11 +36,10 @@
     "npmRebuild": false,
     "win": {
       "target": "msi",
-      "icon": "build/icon.ico",
-      "publisherName": "Al-Mustafa",
-      "artifactName": "ImageBoard-Admin-${version}-x64.${ext}"
+      "icon": "build/icon.ico"
     },
     "msi": {
+      "artifactName": "ImageBoard-Admin-${version}-x64.${ext}",
       "perMachine": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
