@@ -57,6 +57,10 @@ function createWindow() {
     },
   });
 
+  mainWindow.webContents.on("did-fail-load", (_event, code, description, url) => {
+    console.error("Admin renderer failed to load:", code, description, url);
+  });
+
   if (!app.isPackaged) {
     mainWindow.loadURL("http://127.0.0.1:5173");
   } else {
